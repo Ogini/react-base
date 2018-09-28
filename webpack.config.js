@@ -1,5 +1,7 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyWebpackPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
     entry: './src/index.js',
@@ -27,6 +29,14 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
+        }),
+        //new webpack.optimize.DedupePlugin(), //dedupe similar code
+        new UglifyWebpackPlugin(), //minify everything
+        //new webpack.optimize.AggressiveMergingPlugin(), //Merge chunks
         new HtmlWebpackPlugin({
             template: './src/index.html'
         })
