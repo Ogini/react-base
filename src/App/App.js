@@ -11,7 +11,7 @@ const nouns = ['ABBA', 'Agnetha', 'Benny', 'Björn', 'Annifrid']
 const verbs = ['Rocks', 'Rules', 'is great!']
 const messageTitles = ['ABBA Rocks', 'Oh hi there!']
 
-const messageBodies = ['Thanks for visiting ABBA Rocks!']
+const messageBodies = ['Thanks for visiting ABBA Rocks!', 'Feel free to browse around the site!']
 const oneOf = list => {
     return list[randomUpTo(list.length)]
 }
@@ -51,8 +51,8 @@ class App extends React.Component {
 
     // Make sure intervals are cleared.
     componentWillUnmount = () => {
-        clearInterval(this.state.textTick)
-        clearInterval(this.state.colorTick)
+        if (this.state.textTick) clearInterval(this.state.textTick)
+        if (this.state.colorTick) clearInterval(this.state.colorTick)
     }
 
     render() {
